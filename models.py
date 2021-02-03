@@ -21,3 +21,28 @@ class User(db.Model):
     username = db.Column(db.Text(20), nullable=False)
     password = db.Column(db.Text, nullable=False)
 
+    @classmethod
+    def register(cls, username, password, first_name, last_name, email):
+        """ Register user w/hashed password and return the user itself """
+
+        hashed = bcrypt.generate_password_hash(password)
+
+        #turn the bytestring into normal (unicode utf8) string
+        hashed_utf8 = hashed.decode("utf8")
+
+        return cls(username=username, password=hashed_utf8, first_name=first_name, last_name=last_name, email=email)
+
+    def __repr__(self):
+        return (f'{self.username} created')
+    
+    @classmethod
+    def authenticate(cls, username, pwd):
+        """ returns user if user exists and password matches """
+        
+        u = User.query.filter_by(username=username).first()
+
+        if u and bcrypt.check_password_hash(u.password, pwd):
+            return u
+        else:
+            return False
+
