@@ -36,6 +36,7 @@ def register_page():
 
         db.session.add(user)
         db.session.commit()
+        flash(f'Welcome {first_name}!')
 
         return redirect('/')
 

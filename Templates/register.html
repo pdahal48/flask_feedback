@@ -3,26 +3,29 @@
 <title>Feedbook - Give/Recieve Feedback</title>
 
 {% block content %}
-<h1 class="display-6 text-center">Register to Share a Feedback!</h1>
+<h1 class="display-6 text-center mt-0">Register to Share a Feedback!</h1>
 
-<form method="POST">
 
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3">
+            <div class="form-group">
+                <form method="POST">
     {{ form.hidden_tag() }}
   
     {% for field in form
       if field.widget.input_type != 'hidden' %}
-    <p>
-      {{ field.label }}
-      {{ field(class_="form-control") }}
-  
-      {% for error in field.errors %}
-      <span class="form-text text-danger">{{ error }}</span>
-      {% endfor %}
-    </p>
-    {% endfor %}
-  
-    <button class="btn btn-success" type="submit">Register</button>
-  
-  </form>
-  
+
+            {{ field.label }}
+            {{ field(class_="form-control border border-primary"  )}}
+    
+        {% for error in field.errors %}
+            <span class="form-text text-danger">{{ error }}</span>
+        {% endfor %}
+        {% endfor %}
+
+</div >
+        <button class="btn btn-success mt-2" type="submit">Register</button>
+    </form>
+    </div>
+    </div>
 {% endblock %}
