@@ -27,3 +27,12 @@ class RegisterForm(FlaskForm):
         if (len(field.data) > 20):
             raise ValidationError('Username must less than 20 characters')
 
+
+class LoginForm(FlaskForm):
+
+    first_name = StringField('First Name', validators=[InputRequired()])
+    last_name = StringField('Last Name', validators=[InputRequired()])
+    email = StringField('Email', validators=[InputRequired(), email()])
+    username = StringField('Username', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+  

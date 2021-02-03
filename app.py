@@ -38,7 +38,11 @@ def register_page():
         db.session.commit()
         flash(f'Welcome {first_name}!')
 
-        return redirect('/')
+        return redirect('/secret')
 
     else:
         return render_template('register.html', form=form)
+
+@app.route('/secret')
+def secret_page():
+    return render_template('secret.html')
