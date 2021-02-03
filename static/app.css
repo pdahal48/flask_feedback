@@ -7,3 +7,8 @@ body {
     background-color: cornflowerblue;
     font-size: 1.5rem;
 }
+
+.user_info {
+    font-size: 2rem;
+    color: teal;
+}
