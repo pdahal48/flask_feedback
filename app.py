@@ -44,6 +44,10 @@ def register_page():
 
 @app.route('/secret')
 def secret_page():
+
+    if 'user_id' not in session:
+        return redirect('/login')
+
     return render_template('secret.html')
 
 
@@ -68,9 +72,10 @@ def login_user():
 
 
 #its better to make a logout a post request. Just add an empty form
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout_user():
-    
+
     flash(f'You been logged out')
     session.pop('user_id')
     return redirect('/')
+
