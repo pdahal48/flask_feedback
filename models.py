@@ -32,16 +32,13 @@ class User(db.Model):
 
         return cls(username=username, password=hashed_utf8, first_name=first_name, last_name=last_name, email=email)
 
-    def __repr__(self):
-        return (f'{self.username} created')
-    
     @classmethod
-    def authenticate(cls, username, pwd):
+    def authenticate(cls, username, password):
         """ returns user if user exists and password matches """
         
         u = User.query.filter_by(username=username).first()
 
-        if u and bcrypt.check_password_hash(u.password, pwd):
+        if u and bcrypt.check_password_hash(u.password, password):
             return u
         else:
             return False

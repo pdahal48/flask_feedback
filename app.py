@@ -47,15 +47,24 @@ def secret_page():
     return render_template('secret.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login_user():
 
     form = LoginForm()
 
     if form.validate_on_submit():
-
         username = form.username.data
         password = form.password.data
+        user = User.authenticate(username, password)
+
+        if user:
+            flash(f'Greetings {user.first_name}!')
+            session['user_id'] = user.id
+            return redirect('/secret')
+        else:
+            form.username.errors = ['Invalid Username/password']
+        
+    return render_template('login.html', form=form)
 
 
 #its better to make a logout a post request. Just add an empty form
