@@ -18,7 +18,7 @@ toolbar = DebugToolbarExtension(app)
 def home_page():
     return redirect('/register')
 
-@app.route('/register', methods=['GET'])
+@app.route('/register', methods=['GET', 'POST'])
 def register_page():
 
     form = RegisterForm()

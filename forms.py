@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, email
+from wtforms.validators import InputRequired, email, ValidationError
 
 class RegisterForm(FlaskForm):
 
@@ -11,18 +11,19 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
   
 
-    def validate_username(form, field):
-        if (field.data > 20):
-            raise ValidationError('username must less than 20 characters')
-
-    def validate_email(form, field):
-        if (field.data > 50):
-            raise ValidationError('Email must be 50 or lower characters')
-
     def validate_first_name(form, field):
-        if (field.data > 30):
+        if (len(field.data) > 30):
             raise ValidationError('First Name must be 30 or lower characters')
 
     def validate_last_name(form, field):
-        if (field.data > 30):
+        if (len(field.data) > 30):
             raise ValidationError('Last Name must be 30 or lower characters')
+
+    def validate_email(form, field):
+        if (len(field.data) > 50):
+            raise ValidationError('Email must be 50 or lower characters')
+
+    def validate_username(form, field):
+        if (len(field.data) > 20):
+            raise ValidationError('Username must less than 20 characters')
+
