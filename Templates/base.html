@@ -13,10 +13,10 @@
       <a href="/" class="navbar-brand text-light"><i class="fas fa-comments fa-3x"></i> <span class="display-4">Feedbook</span></a>
       <ul class="nav navbar-nav flex-row float-right">
         {% if session['username'] %}
-        <li class="nav-item display-4">
-          <form method="POST"> 
-          <a class="nav-link pr-3 text-light" href="/logout">Logout</a>
-          </form>
+        <li class="nav-item">
+          <form action="/logout" method="POST">
+            <button class="btn btn-lg btn-success"> Logout</button>
+        </form> 
         </li>
         {% else %}
             <div class="navbar nav-item h4">
