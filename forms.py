@@ -36,3 +36,13 @@ class LoginForm(FlaskForm):
     def validate_username(form, field):
         if (len(field.data) > 20):
             raise ValidationError('Username must less than 20 characters')
+
+class FeedbackForm(FlaskForm):
+
+    title = StringField('Title', validators=[InputRequired()])
+    content = StringField('Content', validators=[InputRequired()])
+
+    def validate_title(form, field):
+        if (len(field.data) > 100):
+            raise ValidationError('Title must be lower than 100 characters')
+

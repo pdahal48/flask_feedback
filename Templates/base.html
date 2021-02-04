@@ -12,7 +12,7 @@
     <div class="container">
       <a href="/" class="navbar-brand text-light"><i class="fas fa-comments fa-3x"></i> <span class="display-4">Feedbook</span></a>
       <ul class="nav navbar-nav flex-row float-right">
-        {% if session['user_id'] %}
+        {% if session['username'] %}
         <li class="nav-item display-4">
           <form method="POST"> 
           <a class="nav-link pr-3 text-light" href="/logout">Logout</a>

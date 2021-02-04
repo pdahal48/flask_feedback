@@ -14,11 +14,10 @@ def connect_db(app):
 class User(db.Model):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = db.Column(db.Text(30), nullable=False)
-    last_name = db.Column(db.Text(30), nullable=False)
-    email = db.Column(db.Text(50), nullable=False, unique=True)
-    username = db.Column(db.Text(20), nullable=False)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    username = db.Column(db.String(20), nullable=False, primary_key=True, unique=True)
     password = db.Column(db.Text, nullable=False)
 
     @classmethod
@@ -47,8 +46,7 @@ class Feedback(db.Model):
     __tablename__ = 'feedbacks'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.Text(100), nullable=False)
+    title = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
-
-    username = db.Column(db.Text, db.ForeignKey('users.username', ondelete='Cascade'))
+    username = db.Column(db.String, db.ForeignKey('users.username', ondelete='Cascade'))
     
